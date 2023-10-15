@@ -10,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.*;
 import javafx.scene.text.Text;
@@ -25,10 +23,6 @@ public class Main extends Application
     {
         launch(args);
     }
-
-
-
-
     @Override
     public void start(Stage primaryStage)
     {
@@ -37,6 +31,13 @@ public class Main extends Application
             Group root = new Group();
             Button about_btn = new Button("ABOUT");
             Button credit_btn = new Button("CREDITS");
+            Button login_btn = new Button("LOGIN");
+            Button fd_btn = new Button("FIXED DEPOSIT");
+            Button rd_btn = new Button("RECURRING DEPOSIT");
+            Button loan_btn = new Button("LOANS");
+            Button shares_btn = new Button("SHARES");
+            Button insurance_btn = new Button("INSURANCE");
+            Button calculator_btn = new Button("CALCULATORS");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
             Parent fxmlRoot = loader.load();
             Scene scene = new Scene(root);
@@ -58,11 +59,12 @@ public class Main extends Application
             imageView.setSmooth(true);
             imageView.setCache(true);
 
-            about_btn.setLayoutX(1224);
-            button(about_btn);
-
-            credit_btn.setLayoutX(1374);
-            button(credit_btn);
+            about_btn.setLayoutX(1074);
+            menu_bttn(about_btn);
+            credit_btn.setLayoutX(1224);
+            menu_bttn(credit_btn);
+            login_btn.setLayoutX(1374);
+            menu_bttn(login_btn);
 
             scene.setFill(new RadialGradient(
                     1, 1, 1, 1, 1, true,
@@ -77,7 +79,9 @@ public class Main extends Application
             primaryStage.setTitle("The Banking Project");
             primaryStage.setFullScreen(true);
             primaryStage.setFullScreenExitHint("");
+            primaryStage.setResizable(false);
 
+            root.getChildren().add(login_btn);
             root.getChildren().add(credit_btn);
             root.getChildren().add(about_btn);
             root.getChildren().add(stackPane);
@@ -92,7 +96,21 @@ public class Main extends Application
         }
     }
 
-    public void button(Button button) {
+    public void main_bttn (Button button) {
+        button.setFont(Font.font("Unispace", 14));
+        button.setPrefSize(200, 100);
+        button.setTextFill(Color.rgb(72, 191, 227));
+        button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(1, 33, 24));
+            button.setStyle("-fx-background-color: rgb(83, 144, 217); -fx-border-color: rgb(83, 144, 217); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
+        button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(72, 191, 227));
+            button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
+    }
+    public void menu_bttn(Button button) {
         button.setLayoutY(14);
         button.setPrefSize(126, 26);
         button.setFont(Font.font("Unispace", 12));
@@ -101,7 +119,7 @@ public class Main extends Application
 
         button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
             button.setTextFill(Color.rgb(1, 33, 24));
-            button.setStyle("-fx-background-color: rgb(82, 183, 136); -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            button.setStyle("-fx-background-color: rgb(45, 106, 79); -fx-border-color: rgb(45, 106, 79); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         });
         button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
             button.setTextFill(Color.rgb(82, 183, 136));
@@ -124,6 +142,17 @@ public class Main extends Application
             button.setOnAction((ActionEvent event) -> {
                 try {
                     //enter the code to open the about page here
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        else if (button.getText().equals("LOGIN"))
+        {
+            button.setOnAction((ActionEvent event) -> {
+                try {
+                    //enter the code to open the login page here
                 }
                 catch (Exception e) {
                     e.printStackTrace();
