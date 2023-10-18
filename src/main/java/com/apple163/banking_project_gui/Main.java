@@ -141,13 +141,34 @@ public class Main extends Application
             primaryStage.setScene(scene);
             primaryStage.show();
 
+            about_btn.setOnAction((ActionEvent event) -> {
+                new About();
+            });
+            credit_btn.setOnAction((ActionEvent event) -> {
+                new Credit();
+            });
+            login_btn.setOnAction((ActionEvent event) -> {
+                new Login();
+            });
+
+
             fd_btn.setOnAction((ActionEvent event) -> {
-                try {
-                    new FD();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
+                new FD();
+            });
+            rd_btn.setOnAction((ActionEvent event) -> {
+                new RD();
+            });
+            loan_btn.setOnAction((ActionEvent event) -> {
+                new Loan();
+            });
+            calculator_btn.setOnAction((ActionEvent event) -> {
+                new Calculator();
+            });
+            insurance_btn.setOnAction((ActionEvent event) -> {
+                new Insurance();
+            });
+            shares_btn.setOnAction((ActionEvent event) -> {
+                new Shares();
             });
         }
         catch (Exception e) {
@@ -186,41 +207,7 @@ public class Main extends Application
             button.setTextFill(Color.rgb(82, 183, 136));
             button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         });
-
-        if (button.getText().equals("CREDITS"))
-        {
-            button.setOnAction((ActionEvent event) -> {
-                try {
-                    //enter the code to open the credits page here
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
         }
-        else if (button.getText().equals("ABOUT"))
-        {
-            button.setOnAction((ActionEvent event) -> {
-                try {
-                    //enter the code to open the about page here
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-        else if (button.getText().equals("LOGIN"))
-        {
-            button.setOnAction((ActionEvent event) -> {
-                try {
-                    //enter the code to open the login page here
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-    }
     public void Icons (ImageView view, Button button)
     {
         view.fitWidthProperty().bind(button.heightProperty().multiply(0.4));

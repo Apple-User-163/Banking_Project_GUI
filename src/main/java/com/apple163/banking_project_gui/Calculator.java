@@ -16,9 +16,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Credit
+public class Calculator
 {
-    public Credit()
+    public Calculator()
     {
         Stage primaryStage = new Stage();
         StackPane stackPane = new StackPane();
