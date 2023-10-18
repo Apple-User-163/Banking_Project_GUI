@@ -16,9 +16,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Calculator
+public class Account
 {
-    public Calculator()
+
+    public Account()
     {
         Stage primaryStage = new Stage();
         StackPane stackPane = new StackPane();
@@ -27,7 +28,7 @@ public class Calculator
         Image logo = new Image("Logo.png");
         Image icon = new Image("Icon.png");
         Text title = new Text("THE BANKING PROJECT");
-        Text sub_title = new Text("CALCULATORS");
+        Text sub_title = new Text("ACCOUNT");
         ImageView imageView = new ImageView(logo);
         Button back_btn = new Button("BACK");
 

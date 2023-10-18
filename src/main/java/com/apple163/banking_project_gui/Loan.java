@@ -27,6 +27,7 @@ public class Loan
         Image logo = new Image("Logo.png");
         Image icon = new Image("Icon.png");
         Text title = new Text("THE BANKING PROJECT");
+        Text sub_title = new Text("LOANS");
         ImageView imageView = new ImageView(logo);
         Button back_btn = new Button("BACK");
 
@@ -34,6 +35,10 @@ public class Loan
         title.setFont(Font.font("Unispace", 25));
         title.setX(60);
         title.setY(36);
+        sub_title.setFill(Color.rgb(82, 183, 136));
+        sub_title.setFont(Font.font("Unispace", 40));
+        sub_title.setX(60);
+        sub_title.setY(120);
 
         imageView.setX(10);
         imageView.setY(5);
@@ -82,6 +87,7 @@ public class Loan
         primaryStage.setFullScreenExitHint("");
         primaryStage.setResizable(false);
 
+        root.getChildren().add(sub_title);
         root.getChildren().add(back_btn);
         root.getChildren().add(stackPane);
         root.getChildren().add(title);

@@ -141,35 +141,24 @@ public class Main extends Application
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            about_btn.setOnAction((ActionEvent event) -> {
-                new About();
-            });
-            credit_btn.setOnAction((ActionEvent event) -> {
-                new Credit();
-            });
-            login_btn.setOnAction((ActionEvent event) -> {
-                new Login();
-            });
+            about_btn.setOnAction((ActionEvent event) -> new About());
+            credit_btn.setOnAction((ActionEvent event) -> new Credit());
+            if(login_btn.getText().equals("LOGIN"))
+            {
+                login_btn.setOnAction((ActionEvent event) -> new Login());
+            }
+            else if (login_btn.getText().equals("ACCOUNT"))
+            {
+                login_btn.setOnAction((ActionEvent event) -> new Account());
+            }
 
 
-            fd_btn.setOnAction((ActionEvent event) -> {
-                new FD();
-            });
-            rd_btn.setOnAction((ActionEvent event) -> {
-                new RD();
-            });
-            loan_btn.setOnAction((ActionEvent event) -> {
-                new Loan();
-            });
-            calculator_btn.setOnAction((ActionEvent event) -> {
-                new Calculator();
-            });
-            insurance_btn.setOnAction((ActionEvent event) -> {
-                new Insurance();
-            });
-            shares_btn.setOnAction((ActionEvent event) -> {
-                new Shares();
-            });
+            fd_btn.setOnAction((ActionEvent event) -> new FD());
+            rd_btn.setOnAction((ActionEvent event) -> new RD());
+            loan_btn.setOnAction((ActionEvent event) -> new Loan());
+            calculator_btn.setOnAction((ActionEvent event) -> new Calculator());
+            insurance_btn.setOnAction((ActionEvent event) -> new Insurance());
+            shares_btn.setOnAction((ActionEvent event) -> new Shares());
         }
         catch (Exception e) {
             e.printStackTrace();
