@@ -64,14 +64,7 @@ public class FD
             back_btn.setTextFill(Color.rgb(82, 183, 136));
             back_btn.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         });
-        back_btn.setOnAction((ActionEvent event) -> {
-            try {
-                primaryStage.close();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        back_btn.setOnAction((ActionEvent event) -> primaryStage.close());
 
         scene.setFill(new RadialGradient(
                 1, 1, 1, 1, 1, true,

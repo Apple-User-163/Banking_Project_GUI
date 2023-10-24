@@ -1,0 +1,34 @@
+.combo-box{
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(82, 183, 136);
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-font: 20px "Unispace";
+    -fx-text-fill: rgb(64, 145, 108);
+    -fx-prompt-text-fill: rgb(64, 145, 108);
+}
+
+.combo-box-popup .list-view, .combo-box-popup .list-cell {
+    -fx-text-fill: rgb(64, 145, 108);
+    -fx-prompt-text-fill: rgb(64, 145, 108);
+    -fx-font: 20px "Unispace";
+    -fx-background-color: rgb(20, 54, 52);
+    -fx-background-size: 100% 100%;
+}
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-text-fill: rgb(64, 145, 108);
+}
+.list-view{
+    -fx-border-color: rgb(82, 183, 136);
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+}
+/* outer combo-box text */
+.combo-box .list-cell {
+    -fx-text-fill: rgb(178, 178, 178);
+}
+
+/* combo-box list view text, not hovered or focused */
+.combo-box .list-view .list-cell {
+    -fx-text-fill: rgb(178, 178, 178);
+}

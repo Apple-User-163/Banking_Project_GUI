@@ -1,39 +1,34 @@
 package com.apple163.banking_project_gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-//import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.*;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
-//import javafx.scene.text.TextAlignment;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class Main extends Application
 {
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
     @Override
     public void start(Stage primaryStage)
     {
-        try {
             StackPane stackPane = new StackPane();
             Group root = new Group();
             Button about_btn = new Button("ABOUT");
             Button credit_btn = new Button("CREDITS");
-            Button login_btn = new Button("LOGIN");
+            Button login_btn = new Button();
             Button fd_btn = new Button("FIXED DEPOSIT");
             Button rd_btn = new Button("RECURRING  \nDEPOSIT");
             Button loan_btn = new Button("LOANS");
@@ -45,12 +40,12 @@ public class Main extends Application
             Scene scene = new Scene(root);
             Image logo = new Image("Logo.png");
             Image icon = new Image("Icon.png");
-            //Image fd = new Image("Fd.png");
+            Image fd = new Image("Fd.png");
             Image rd = new Image("Rd.png");
-            //Image calculator = new Image("Cal.png");
+            Image calculator = new Image("Cal.png");
             Image loan = new Image("Loan.png");
-            //Image insurance = new Image("Insurance.png");
-            //Image shares = new Image("Shares.png");
+            Image insurance = new Image("Insurance.png");
+            Image shares = new Image("Shares.png");
             Text title = new Text("THE BANKING PROJECT");
             Text sub_title = new Text("SERVICES");
 
@@ -90,12 +85,12 @@ public class Main extends Application
             main_bttn(calculator_btn);
 
             ImageView imageView = new ImageView(logo);
-            //ImageView fd_img = new ImageView(fd);
+            ImageView fd_img = new ImageView(fd);
             ImageView rd_img = new ImageView(rd);
-            //ImageView calculator_img = new ImageView(calculator);
+            ImageView calculator_img = new ImageView(calculator);
             ImageView loan_img = new ImageView(loan);
-            //ImageView insurance_img = new ImageView(insurance);
-            //ImageView shares_img = new ImageView(shares);
+            ImageView insurance_img = new ImageView(insurance);
+            ImageView shares_img = new ImageView(shares);
             imageView.setX(10);
             imageView.setY(5);
             imageView.setFitHeight(50);
@@ -104,9 +99,12 @@ public class Main extends Application
             imageView.setSmooth(true);
             imageView.setCache(true);
 
-            //Icons(fd_img, fd_btn);
+            Icons(fd_img, fd_btn);
             Icons(rd_img, rd_btn);
             Icons(loan_img, loan_btn);
+            Icons(shares_img, shares_btn);
+            Icons(insurance_img, insurance_btn);
+            Icons(calculator_img, calculator_btn);
 
             scene.setFill(new RadialGradient(
                     1, 1, 1, 1, 1, true,
@@ -114,7 +112,6 @@ public class Main extends Application
                     new Stop(0, Color.rgb(4, 116, 114)),
                     new Stop(1, Color.rgb(1, 33, 24)))
             );
-
             primaryStage.getIcons().add(icon);
             primaryStage.setWidth(1533);
             primaryStage.setHeight(800);
@@ -123,7 +120,7 @@ public class Main extends Application
             primaryStage.setFullScreenExitHint("");
             primaryStage.setResizable(false);
 
-            //root.getChildren().add(fd_img);
+            root.getChildren().add(fd_img);
             root.getChildren().add(insurance_btn);
             root.getChildren().add(calculator_btn);
             root.getChildren().add(shares_btn);
@@ -138,20 +135,10 @@ public class Main extends Application
             root.getChildren().add(sub_title);
             root.getChildren().add(title);
             root.getChildren().add(imageView);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+
 
             about_btn.setOnAction((ActionEvent event) -> new About());
             credit_btn.setOnAction((ActionEvent event) -> new Credit());
-            if(login_btn.getText().equals("LOGIN"))
-            {
-                login_btn.setOnAction((ActionEvent event) -> new Login());
-            }
-            else if (login_btn.getText().equals("ACCOUNT"))
-            {
-                login_btn.setOnAction((ActionEvent event) -> new Account());
-            }
-
 
             fd_btn.setOnAction((ActionEvent event) -> new FD());
             rd_btn.setOnAction((ActionEvent event) -> new RD());
@@ -159,10 +146,19 @@ public class Main extends Application
             calculator_btn.setOnAction((ActionEvent event) -> new Calculator());
             insurance_btn.setOnAction((ActionEvent event) -> new Insurance());
             shares_btn.setOnAction((ActionEvent event) -> new Shares());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+
+            if (!Login.signed_in)
+                 new Login();
+            else
+            {
+                login_btn.setText("ACCOUNT");
+                login_btn.setOnAction((ActionEvent event_) -> new Account());
+                primaryStage.setScene(scene);
+                primaryStage.show();
+            }
+
+            System.out.println(Login.signed_in + " Main");
+
     }
 
     public void main_bttn (Button button) {
@@ -197,8 +193,7 @@ public class Main extends Application
             button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         });
         }
-    public void Icons (ImageView view, Button button)
-    {
+    public void Icons (ImageView view, Button button) {
         view.fitWidthProperty().bind(button.heightProperty().multiply(0.4));
         view.fitWidthProperty().bind(button.widthProperty().multiply(0.4));
         button.setGraphic(view);
@@ -208,6 +203,28 @@ public class Main extends Application
         view.setSmooth(true);
         view.setCache(true);
         if (button.getText().equals("FIXED DEPOSIT"))
+        {
             button.setGraphicTextGap(0);
+        }
+        if (button.getText().equals("SHARES"))
+        {
+            button.setGraphicTextGap(10);
+        }
+        if (button.getText().equals("INSURANCE"))
+        {
+            button.setGraphicTextGap(10);
+        }
+        if (button.getText().equals("RECURRING  \nDEPOSIT"))
+        {
+            button.setGraphicTextGap(10);
+        }
+        if (button.getText().equals("LOANS"))
+        {
+            button.setGraphicTextGap(10);
+        }
+    }
+    public static void main(String[] args)
+    {
+        launch(args);
     }
 }
