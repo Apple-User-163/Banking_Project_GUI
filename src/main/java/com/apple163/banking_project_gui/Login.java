@@ -35,6 +35,7 @@ public class Login
 {
     public String user_name;
     public String pass_word;
+    public int user_id;
     String occupation;
     Boolean userFound = false;
 
@@ -145,6 +146,8 @@ public class Login
 
                 if (storedUsername.equals(user_name) && storedPassword.equals(pass_word)) {
                     userFound = true;
+                    user_id = users.indexOf(user);
+                    System.out.println(user_id);
                     break;
                 }
             }
@@ -207,6 +210,8 @@ public class Login
                 signed_in = true;
                 message.setFill(Color.LIMEGREEN);
                 message.setText("Registration successful");
+                user_id = users.indexOf(newUser);
+                System.out.println(user_id);
             }   close(stage);
             if (userFound) {
                 message.setFill(Color.RED);
@@ -239,7 +244,6 @@ public class Login
         stage.setOnHidden(event -> {
             signed_in =  true;
             new Main().start(new Stage());
-            System.out.println(signed_in);
         });
     }
     public void button (Button button)
@@ -256,7 +260,7 @@ public class Login
 
     public void close(Stage stage)
     {
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> stage.close());
         pause.play();
     }

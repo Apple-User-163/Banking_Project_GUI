@@ -1,7 +1,6 @@
 package com.apple163.banking_project_gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -17,7 +16,6 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.beans.property.SimpleBooleanProperty;
 
 public class Main extends Application
 {
@@ -46,8 +44,27 @@ public class Main extends Application
             Image loan = new Image("Loan.png");
             Image insurance = new Image("Insurance.png");
             Image shares = new Image("Shares.png");
+            Image fd_bl = new Image("Fd_bl.png");
+            Image rd_bl = new Image("Rd_bl.png");
+            Image calculator_bl = new Image("Cal_bl.png");
+            Image loan_bl = new Image("Loan_bl.png");
+            Image insurance_bl = new Image("Insurance_bl.png");
+            Image shares_bl = new Image("Shares_bl.png");
             Text title = new Text("THE BANKING PROJECT");
             Text sub_title = new Text("SERVICES");
+            ImageView imageView = new ImageView(logo);
+            ImageView fd_img = new ImageView(fd);
+            ImageView rd_img = new ImageView(rd);
+            ImageView calculator_img = new ImageView(calculator);
+            ImageView loan_img = new ImageView(loan);
+            ImageView insurance_img = new ImageView(insurance);
+            ImageView shares_img = new ImageView(shares);
+            ImageView fd_img_bl = new ImageView(fd_bl);
+            ImageView rd_img_bl = new ImageView(rd_bl);
+            ImageView calculator_img_bl = new ImageView(calculator_bl);
+            ImageView loan_img_bl = new ImageView(loan_bl);
+            ImageView insurance_img_bl = new ImageView(insurance_bl);
+            ImageView shares_img_bl = new ImageView(shares_bl);
 
             title.setFill(Color.rgb(82, 183, 136));
             title.setFont(Font.font("Unispace", 25));
@@ -67,30 +84,23 @@ public class Main extends Application
 
             fd_btn.setLayoutX(87);
             fd_btn.setLayoutY(247);
-            main_bttn(fd_btn);
+            main_bttn(fd_btn, fd_img, fd_img_bl);
             rd_btn.setLayoutX(593);
             rd_btn.setLayoutY(247);
-            main_bttn(rd_btn);
+            main_bttn(rd_btn, rd_img, rd_img_bl);
             loan_btn.setLayoutX(1101);
             loan_btn.setLayoutY(247);
-            main_bttn(loan_btn);
+            main_bttn(loan_btn, loan_img, loan_img_bl);
             shares_btn.setLayoutX(87);
             shares_btn.setLayoutY(545);
-            main_bttn(shares_btn);
+            main_bttn(shares_btn, shares_img, shares_img_bl);
             insurance_btn.setLayoutX(593);
             insurance_btn.setLayoutY(545);
-            main_bttn(insurance_btn);
+            main_bttn(insurance_btn, insurance_img, insurance_img_bl);
             calculator_btn.setLayoutX(1101);
             calculator_btn.setLayoutY(545);
-            main_bttn(calculator_btn);
+            main_bttn(calculator_btn, calculator_img, calculator_img_bl);
 
-            ImageView imageView = new ImageView(logo);
-            ImageView fd_img = new ImageView(fd);
-            ImageView rd_img = new ImageView(rd);
-            ImageView calculator_img = new ImageView(calculator);
-            ImageView loan_img = new ImageView(loan);
-            ImageView insurance_img = new ImageView(insurance);
-            ImageView shares_img = new ImageView(shares);
             imageView.setX(10);
             imageView.setY(5);
             imageView.setFitHeight(50);
@@ -99,12 +109,6 @@ public class Main extends Application
             imageView.setSmooth(true);
             imageView.setCache(true);
 
-            Icons(fd_img, fd_btn);
-            Icons(rd_img, rd_btn);
-            Icons(loan_img, loan_btn);
-            Icons(shares_img, shares_btn);
-            Icons(insurance_img, insurance_btn);
-            Icons(calculator_img, calculator_btn);
 
             scene.setFill(new RadialGradient(
                     1, 1, 1, 1, 1, true,
@@ -157,51 +161,37 @@ public class Main extends Application
                 primaryStage.show();
             }
 
-            System.out.println(Login.signed_in + " Main");
-
     }
 
-    public void main_bttn (Button button) {
+    public void main_bttn (Button button, ImageView view, ImageView view_bl) {
         button.setFont(Font.font("Unispace", 22));
         button.setPrefSize(350, 150);
         button.setTextFill(Color.rgb(72, 191, 227));
         button.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-
-        button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
-            button.setTextFill(Color.rgb(1, 33, 24));
-            button.setStyle("-fx-background-color: rgb(83, 144, 217); -fx-border-color: rgb(83, 144, 217); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        });
-        button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
-            button.setTextFill(Color.rgb(72, 191, 227));
-            button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        });
-    }
-    public void menu_bttn(Button button) {
-        button.setLayoutY(14);
-        button.setPrefSize(126, 26);
-        button.setFont(Font.font("Unispace", 12));
-        button.setTextFill(Color.rgb(82, 183, 136));
-        button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-
-        button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
-            button.setTextFill(Color.rgb(1, 33, 24));
-            button.setStyle("-fx-background-color: rgb(45, 106, 79); -fx-border-color: rgb(45, 106, 79); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        });
-        button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
-            button.setTextFill(Color.rgb(82, 183, 136));
-            button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        });
-        }
-    public void Icons (ImageView view, Button button) {
         view.fitWidthProperty().bind(button.heightProperty().multiply(0.4));
         view.fitWidthProperty().bind(button.widthProperty().multiply(0.4));
-        button.setGraphic(view);
+        view_bl.fitWidthProperty().bind(button.heightProperty().multiply(0.4));
+        view_bl.fitWidthProperty().bind(button.widthProperty().multiply(0.4));
+        button.setGraphic(view_bl);
         button.setGraphicTextGap(-10);
         button.setAlignment(Pos.BASELINE_LEFT);
         view.setPreserveRatio(true);
         view.setSmooth(true);
         view.setCache(true);
+        view_bl.setPreserveRatio(true);
+        view_bl.setSmooth(true);
+        view_bl.setCache(true);
+        button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(1, 33, 24));
+            button.setStyle("-fx-background-color: rgb(83, 144, 217); -fx-border-color: rgb(83, 144, 217); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            button.setGraphic(view);
+        });
+        button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(72, 191, 227));
+            button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            button.setGraphic(view_bl);
+        });
         if (button.getText().equals("FIXED DEPOSIT"))
         {
             button.setGraphicTextGap(0);
@@ -222,6 +212,22 @@ public class Main extends Application
         {
             button.setGraphicTextGap(10);
         }
+    }
+    public void menu_bttn(Button button) {
+        button.setLayoutY(14);
+        button.setPrefSize(126, 26);
+        button.setFont(Font.font("Unispace", 12));
+        button.setTextFill(Color.rgb(82, 183, 136));
+        button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+
+        button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(1, 33, 24));
+            button.setStyle("-fx-background-color: rgb(45, 106, 79); -fx-border-color: rgb(45, 106, 79); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
+        button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
+            button.setTextFill(Color.rgb(82, 183, 136));
+            button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
     }
     public static void main(String[] args)
     {
