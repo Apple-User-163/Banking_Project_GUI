@@ -174,6 +174,7 @@ public class Main extends Application
         view_bl.fitWidthProperty().bind(button.heightProperty().multiply(0.4));
         view_bl.fitWidthProperty().bind(button.widthProperty().multiply(0.4));
         button.setGraphic(view_bl);
+        view.setVisible(false);
         button.setGraphicTextGap(-10);
         button.setAlignment(Pos.BASELINE_LEFT);
         view.setPreserveRatio(true);
@@ -185,17 +186,17 @@ public class Main extends Application
         button.setOnMouseEntered((javafx.scene.input.MouseEvent event) -> {
             button.setTextFill(Color.rgb(1, 33, 24));
             button.setStyle("-fx-background-color: rgb(83, 144, 217); -fx-border-color: rgb(83, 144, 217); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            view.setVisible(true);
             button.setGraphic(view);
+            view_bl.setVisible(false);
         });
         button.setOnMouseExited((javafx.scene.input.MouseEvent event) -> {
             button.setTextFill(Color.rgb(72, 191, 227));
             button.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(72, 191, 227); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            view_bl.setVisible(true);
             button.setGraphic(view_bl);
+            view.setVisible(false);
         });
-        if (button.getText().equals("FIXED DEPOSIT"))
-        {
-            button.setGraphicTextGap(0);
-        }
         if (button.getText().equals("SHARES"))
         {
             button.setGraphicTextGap(10);
@@ -211,6 +212,10 @@ public class Main extends Application
         if (button.getText().equals("LOANS"))
         {
             button.setGraphicTextGap(10);
+        }
+        if (button.getText().equals("FIXED DEPOSIT"))
+        {
+            button.setGraphicTextGap(0);
         }
     }
     public void menu_bttn(Button button) {

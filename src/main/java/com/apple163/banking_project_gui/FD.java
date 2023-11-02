@@ -3,7 +3,7 @@ package com.apple163.banking_project_gui;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,10 +15,12 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.util.Objects;
 
 public class FD
 {
-
+    Boolean tme_check = false;
+    Boolean prin_check = false;
     public FD()
     {
         Stage primaryStage = new Stage();
@@ -29,8 +31,13 @@ public class FD
         Image icon = new Image("Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("FIXED DEPOSIT");
+        Text error = new Text();
         ImageView imageView = new ImageView(logo);
         Button back_btn = new Button("BACK");
+        TextField principal = new TextField();
+        TextField time = new TextField();
+        ComboBox<String> comboBox = new ComboBox<>();
+        Button calculate = new Button("CALCULATE");
 
         title.setFill(Color.rgb(82, 183, 136));
         title.setFont(Font.font("Unispace", 25));
@@ -40,6 +47,10 @@ public class FD
         sub_title.setFont(Font.font("Unispace", 40));
         sub_title.setX(60);
         sub_title.setY(120);
+        error.setFont(Font.font("Unispace", 20));
+        error.setY(610);
+        error.setX(500);
+        error.setFill(Color.RED);
 
         imageView.setX(10);
         imageView.setY(5);
@@ -81,12 +92,134 @@ public class FD
         primaryStage.setFullScreenExitHint("");
         primaryStage.setResizable(false);
 
+        principal.setLayoutX(500);
+        principal.setLayoutY(300);
+        principal.setPrefSize(500, 60);
+        principal.setPromptText("Monthly Deposit");
+        principal.setFont(Font.font("Unispace", 20));
+        principal.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-text-fill: rgb(82, 183, 136);");
+        time.setLayoutX(500);
+        time.setLayoutY(400);
+        time.setPrefSize(500, 60);
+        time.setPromptText("Time Period");
+        time.setFont(Font.font("Unispace", 20));
+        time.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-text-fill: rgb(82, 183, 136);");
+
+        calculate.setLayoutX(500);
+        calculate.setLayoutY(650);
+        calculate.setPrefSize(500, 60);
+        calculate.setFont(Font.font("Unispace", 20));
+        calculate.setTextFill(Color.rgb(82, 183, 136));
+        calculate.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        calculate.setOnMouseEntered((MouseEvent event) -> {
+            calculate.setTextFill(Color.rgb(1, 33, 24));
+            calculate.setStyle("-fx-background-color: rgb(45, 106, 79); -fx-border-color: rgb(45, 106, 79); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
+        calculate.setOnMouseExited((MouseEvent event) -> {
+            calculate.setTextFill(Color.rgb(82, 183, 136));
+            calculate.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        });
+        calculate.setOnAction((ActionEvent event) -> {
+            error.setText("");
+            int upper, lower;
+
+            if (time.getText().isEmpty() || principal.getText().isEmpty() || comboBox.getValue() == null) {
+                error.setText("PLEASE FILL ALL THE FIELDS");
+            }
+            else{
+                String type = comboBox.getValue();
+                upper = switch (type) {
+                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> 3;
+                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> 5;
+                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years", "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> 10;
+                    default -> 0;
+                };
+                if (Integer.parseInt(time.getText()) > upper || Integer.parseInt(time.getText()) < 1) {
+                    error.setText("PLEASE ENTER A VALID TIME PERIOD");
+                    tme_check = false;
+                }
+                else {
+                    tme_check = true;
+                }
+                switch (type) {
+                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> {
+                        upper = 100000;
+                        lower = 70001;
+                    }
+                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> {
+                        upper = 70000;
+                        lower = 40001;
+                    }
+                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" -> {
+                        upper = 40000;
+                        lower = 10001;
+                    }
+                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> {
+                        upper = 10000;
+                        lower = 100;
+                    }
+                    default -> lower = 0;
+                }
+                if (Integer.parseInt(principal.getText()) > upper || Integer.parseInt(principal.getText()) < lower) {
+                    error.setText("PLEASE ENTER A VALID PRINCIPAL AMOUNT");
+                    prin_check = false;
+                }
+                else {
+                    prin_check = true;
+                }
+
+                if (tme_check && prin_check) {
+                    error.setText("");
+                    int pri = Integer.parseInt(principal.getText());
+                    int tim = Integer.parseInt(time.getText());
+                    int amount = getAmount(type, pri, tim);
+                    int interest = amount - pri;
+                    root.getChildren().removeAll(principal, time, comboBox, calculate);
+                    Text amount_text = new Text("Amount: ₹" + amount);
+                    Text interest_text = new Text("Interest: ₹" + interest);
+                    amount_text.setFont(Font.font("Unispace", 30));
+                    amount_text.setFill(Color.rgb(82, 183, 136));
+                    amount_text.setX(500);
+                    amount_text.setY(400);
+                    interest_text.setFont(Font.font("Unispace", 30));
+                    interest_text.setFill(Color.rgb(82, 183, 136));
+                    interest_text.setX(500);
+                    interest_text.setY(500);
+                    root.getChildren().addAll(amount_text, interest_text);
+                }
+            }
+        });
+
+        comboBox.setEditable(false);
+        comboBox.setLayoutX(500);
+        comboBox.setLayoutY(500);
+        comboBox.setPrefSize(500, 60);
+        comboBox.setPromptText("Select the type of Fixed Deposit");
+        comboBox.getItems().addAll("₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years", "₹40,001 to ₹70,000; at 8%; for 1 to 5 years", "₹10,001 to ₹40,000; at 10%; for 1 to 10 years", "₹100 to ₹10,000; at 12%; for 1 to 10 years");
+
+        root.getChildren().add(error);
+        root.getChildren().add(calculate);
         root.getChildren().add(sub_title);
         root.getChildren().add(back_btn);
         root.getChildren().add(stackPane);
         root.getChildren().add(title);
         root.getChildren().add(imageView);
+        root.getChildren().add(principal);
+        root.getChildren().add(time);
+        root.getChildren().add(comboBox);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dropdown.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private static int getAmount(String type, int pri, int tim) {
+        int rate = switch (type) {
+            case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> 6;
+            case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> 8;
+            case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" -> 10;
+            case "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> 12;
+            default -> 0;
+        };
+        return pri + (pri * rate * tim) / 100;
     }
 }
