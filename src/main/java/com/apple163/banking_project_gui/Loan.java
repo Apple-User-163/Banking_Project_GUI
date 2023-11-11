@@ -24,8 +24,8 @@ public class Loan
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image("file:src/main/resources/Logo.png");
-        Image icon = new Image("file:src/main/resources/Icon.png");
+        Image logo = new Image("file://src/main/resources/Logo.png");
+        Image icon = new Image("file://src/main/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("LOANS");
         ImageView imageView = new ImageView(logo);
