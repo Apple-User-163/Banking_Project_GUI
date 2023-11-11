@@ -36,20 +36,20 @@ public class Main extends Application
             /* FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
             Parent fxmlRoot = loader.load(); */
             Scene scene = new Scene(root);
-            Image logo = new Image("Logo.png");
-            Image icon = new Image("Icon.png");
-            Image fd = new Image("Fd.png");
-            Image rd = new Image("Rd.png");
-            Image calculator = new Image("Cal.png");
-            Image loan = new Image("Loan.png");
-            Image insurance = new Image("Insurance.png");
-            Image shares = new Image("Shares.png");
-            Image fd_bl = new Image("Fd_bl.png");
-            Image rd_bl = new Image("Rd_bl.png");
-            Image calculator_bl = new Image("Cal_bl.png");
-            Image loan_bl = new Image("Loan_bl.png");
-            Image insurance_bl = new Image("Insurance_bl.png");
-            Image shares_bl = new Image("Shares_bl.png");
+            Image logo = new Image("file:src/main/resources/Logo.png");
+            Image icon = new Image("file:src/main/resources/Icon.png");
+            Image fd = new Image("file:src/main/resources/Fd.png");
+            Image rd = new Image("file:src/main/resources/Rd.png");
+            Image calculator = new Image("file:src/main/resources/Cal.png");
+            Image loan = new Image("file:src/main/resources/Loan.png");
+            Image insurance = new Image("file:src/main/resources/Insurance.png");
+            Image shares = new Image("file:src/main/resources/Shares.png");
+            Image fd_bl = new Image("file:src/main/resources/Fd_bl.png");
+            Image rd_bl = new Image("file:src/main/resources/Rd_bl.png");
+            Image calculator_bl = new Image("file:src/main/resources/Cal_bl.png");
+            Image loan_bl = new Image("file:src/main/resources/Loan_bl.png");
+            Image insurance_bl = new Image("file:src/main/resources/Insurance_bl.png");
+            Image shares_bl = new Image("file:src/main/resources/Shares_bl.png");
             Text title = new Text("THE BANKING PROJECT");
             Text sub_title = new Text("SERVICES");
             ImageView imageView = new ImageView(logo);
@@ -65,6 +65,7 @@ public class Main extends Application
             ImageView loan_img_bl = new ImageView(loan_bl);
             ImageView insurance_img_bl = new ImageView(insurance_bl);
             ImageView shares_img_bl = new ImageView(shares_bl);
+
 
             title.setFill(Color.rgb(82, 183, 136));
             title.setFont(Font.font("Unispace", 25));

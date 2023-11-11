@@ -24,8 +24,8 @@ public class Insurance
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image("Logo.png");
-        Image icon = new Image("Icon.png");
+        Image logo = new Image("file:src/main/resources/Logo.png");
+        Image icon = new Image("file:src/main/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("INSURANCE");
         ImageView imageView = new ImageView(logo);
@@ -63,14 +63,7 @@ public class Insurance
             back_btn.setTextFill(Color.rgb(82, 183, 136));
             back_btn.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         });
-        back_btn.setOnAction((ActionEvent event) -> {
-            try {
-                primaryStage.close();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        back_btn.setOnAction((ActionEvent event) -> primaryStage.close());
 
         scene.setFill(new RadialGradient(
                 1, 1, 1, 1, 1, true,

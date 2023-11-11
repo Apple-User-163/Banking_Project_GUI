@@ -46,8 +46,8 @@ public class Login
     public Login() {
         StackPane stackPane = new StackPane();
         Stage stage = new Stage();
-        Image logo = new Image("Logo.png");
-        Image icon = new Image("Icon.png");
+        Image logo = new Image("file:src/main/resources/Logo.png");
+        Image icon = new Image("file:src/main/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("LOGIN");
         Text message = new Text();

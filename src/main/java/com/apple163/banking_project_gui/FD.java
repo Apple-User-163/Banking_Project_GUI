@@ -27,8 +27,8 @@ public class FD
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image("Logo.png");
-        Image icon = new Image("Icon.png");
+        Image logo = new Image("file:src/main/resources/Logo.png");
+        Image icon = new Image("file:src/main/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("FIXED DEPOSIT");
         Text error = new Text();
@@ -128,12 +128,13 @@ public class FD
             }
             else{
                 String type = comboBox.getValue();
-                upper = switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> 3;
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> 5;
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years", "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> 10;
-                    default -> 0;
-                };
+                switch (type) {
+                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years": upper = 3; break;
+                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : upper = 5; break;
+                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : upper = 10; break;
+                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : upper = 10; break;
+                    default : upper = 0;
+                }
                 if (Integer.parseInt(time.getText()) > upper || Integer.parseInt(time.getText()) < 1) {
                     error.setText("PLEASE ENTER A VALID TIME PERIOD");
                     tme_check = false;
@@ -142,23 +143,27 @@ public class FD
                     tme_check = true;
                 }
                 switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> {
+                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" : {
                         upper = 100000;
                         lower = 70001;
+                        break;
                     }
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> {
+                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : {
                         upper = 70000;
                         lower = 40001;
+                        break;
                     }
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" -> {
+                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : {
                         upper = 40000;
                         lower = 10001;
+                        break;
                     }
-                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> {
+                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : {
                         upper = 10000;
                         lower = 100;
+                        break;
                     }
-                    default -> lower = 0;
+                    default : lower = 0;
                 }
                 if (Integer.parseInt(principal.getText()) > upper || Integer.parseInt(principal.getText()) < lower) {
                     error.setText("PLEASE ENTER A VALID PRINCIPAL AMOUNT");
@@ -177,6 +182,7 @@ public class FD
                     root.getChildren().removeAll(principal, time, comboBox, calculate);
                     Text amount_text = new Text("Amount: ₹" + amount);
                     Text interest_text = new Text("Interest: ₹" + interest);
+                    Text instruction = new Text("");
                     amount_text.setFont(Font.font("Unispace", 30));
                     amount_text.setFill(Color.rgb(82, 183, 136));
                     amount_text.setX(500);
@@ -213,13 +219,14 @@ public class FD
     }
 
     private static int getAmount(String type, int pri, int tim) {
-        int rate = switch (type) {
-            case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" -> 6;
-            case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" -> 8;
-            case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" -> 10;
-            case "₹100 to ₹10,000; at 12%; for 1 to 10 years" -> 12;
-            default -> 0;
-        };
+        int rate;
+        switch (type) {
+            case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
+            case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : rate = 8; break;
+            case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : rate = 10; break;
+            case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : rate = 12; break;
+            default : rate = 0;
+        }
         return pri + (pri * rate * tim) / 100;
     }
 }
