@@ -26,10 +26,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Login
 {
@@ -46,8 +46,8 @@ public class Login
     public Login() {
         StackPane stackPane = new StackPane();
         Stage stage = new Stage();
-        Image logo = new Image("file://src/main/resources/Logo.png");
-        Image icon = new Image("file://src/main/resources/Icon.png");
+        Image logo = new Image(System.getProperty("user.dir") + "/resources/Logo.png");
+        Image icon = new Image(System.getProperty("user.dir") + "/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("LOGIN");
         Text message = new Text();
@@ -58,10 +58,11 @@ public class Login
         PasswordField password = new PasswordField();
         ComboBox<String> comboBox = new ComboBox<>();
         JSONParser parser = new JSONParser();
+        File tempFile = new File(System.getProperty("user.dir") +"/resources/json/credentials.json");
         Platform.runLater(Stage::new);
         JSONArray users;
         try {
-            users = (JSONArray) parser.parse(new FileReader("credentials.json"));
+            users = (JSONArray) parser.parse(new FileReader(tempFile));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -202,7 +203,7 @@ public class Login
                 newUser.put("occupation", occupation);
                 users.add(newUser);
                 // Update the JSON file with the new user data
-                try (FileWriter fileWriter = new FileWriter("credentials.json")) {
+                try (FileWriter fileWriter = new FileWriter(tempFile)) {
                     fileWriter.write(users.toJSONString());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -237,7 +238,7 @@ public class Login
         root.getChildren().add(stackPane);
         root.getChildren().add(title);
         root.getChildren().add(imageView);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dropdown.css")).toExternalForm());
+        scene.getStylesheets().add(System.getProperty("user.dir")+"/resources/com/apple163/banking_project_gui/dropdown.css");
         stage.setScene(scene);
         stage.show();
 
