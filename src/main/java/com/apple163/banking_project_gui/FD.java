@@ -129,10 +129,10 @@ public class FD
             else{
                 String type = comboBox.getValue();
                 switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years": upper = 3; break;
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : upper = 5; break;
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : upper = 10; break;
-                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : upper = 10; break;
+                    case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 3 years": upper = 3; break;
+                    case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 5 years" : upper = 5; break;
+                    case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 10 years" : upper = 10; break;
+                    case "\u20B9100 to \u20B910,000; at 12%; for 1 to 10 years" : upper = 10; break;
                     default : upper = 0;
                 }
                 if (Integer.parseInt(time.getText()) > upper || Integer.parseInt(time.getText()) < 1) {
@@ -143,22 +143,22 @@ public class FD
                     tme_check = true;
                 }
                 switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" : {
+                    case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 3 years" : {
                         upper = 100000;
                         lower = 70001;
                         break;
                     }
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : {
+                    case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 5 years" : {
                         upper = 70000;
                         lower = 40001;
                         break;
                     }
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : {
+                    case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 10 years" : {
                         upper = 40000;
                         lower = 10001;
                         break;
                     }
-                    case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : {
+                    case "\u20B9100 to \u20B910,000; at 12%; for 1 to 10 years" : {
                         upper = 10000;
                         lower = 100;
                         break;
@@ -180,8 +180,8 @@ public class FD
                     int amount = getAmount(type, pri, tim);
                     int interest = amount - pri;
                     root.getChildren().removeAll(principal, time, comboBox, calculate);
-                    Text amount_text = new Text("Amount: ₹" + amount);
-                    Text interest_text = new Text("Interest: ₹" + interest);
+                    Text amount_text = new Text("Amount: \u20B9" + amount);
+                    Text interest_text = new Text("Interest: \u20B9" + interest);
                     Text instruction = new Text("");
                     amount_text.setFont(Font.font("Unispace", 30));
                     amount_text.setFill(Color.rgb(82, 183, 136));
@@ -200,8 +200,8 @@ public class FD
         comboBox.setLayoutX(500);
         comboBox.setLayoutY(300);
         comboBox.setPrefSize(500, 60);
-        comboBox.setPromptText("Select the type of Fixed Deposit");
-        comboBox.getItems().addAll("70,001 to 1,00,000; at 6%; for 1 to 3 years", "40,001 to 70,000; at 8%; for 1 to 5 years", "10,001 to 40,000; at 10%; for 1 to 10 years", "100 to 10,000; at 12%; for 1 to 10 years");
+        comboBox.setPromptText("Investment Options");
+        comboBox.getItems().addAll("\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 3 years", "\u20B940,001 to \u20B970,000; at 8%; for 1 to 5 years", "\u20B910,001 to \u20B940,000; at 10%; for 1 to 10 years", "\u20B9100 to \u20B910,000; at 12%; for 1 to 10 years");
 
         root.getChildren().add(error);
         root.getChildren().add(calculate);
@@ -221,10 +221,10 @@ public class FD
     private static int getAmount(String type, int pri, int tim) {
         int rate;
         switch (type) {
-            case "70,001 to 1,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
-            case "40,001 to 70,000; at 8%; for 1 to 5 years" : rate = 8; break;
-            case "10,001 to 40,000; at 10%; for 1 to 10 years" : rate = 10; break;
-            case "100 to 10,000; at 12%; for 1 to 10 years" : rate = 12; break;
+            case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
+            case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 5 years" : rate = 8; break;
+            case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 10 years" : rate = 10; break;
+            case "\u20B9100 to \u20B910,000; at 12%; for 1 to 10 years" : rate = 12; break;
             default : rate = 0;
         }
         return pri + (pri * rate * tim) / 100;
