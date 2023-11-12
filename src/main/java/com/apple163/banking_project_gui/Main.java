@@ -36,7 +36,7 @@ public class Main extends Application
             /* FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
             Parent fxmlRoot = loader.load(); */
             Scene scene = new Scene(root);
-            Image logo = new Image(System.getProperty("user.dir") + "/resources/Logo.png)");
+            Image logo = new Image("/resources/Logo.png");
             Image icon = new Image(System.getProperty("user.dir") + "/resources/Icon.png");
             Image fd = new Image(System.getProperty("user.dir") + "/resources/Fd.png");
             Image rd = new Image(System.getProperty("user.dir") + "/resources/Rd.png");

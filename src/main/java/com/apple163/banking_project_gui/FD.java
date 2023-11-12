@@ -201,7 +201,7 @@ public class FD
         comboBox.setLayoutY(500);
         comboBox.setPrefSize(500, 60);
         comboBox.setPromptText("Select the type of Fixed Deposit");
-        comboBox.getItems().addAll("₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years", "₹40,001 to ₹70,000; at 8%; for 1 to 5 years", "₹10,001 to ₹40,000; at 10%; for 1 to 10 years", "₹100 to ₹10,000; at 12%; for 1 to 10 years");
+        comboBox.getItems().addAll("70,001 to 1,00,000; at 6%; for 1 to 3 years", "40,001 to 70,000; at 8%; for 1 to 5 years", "10,001 to 40,000; at 10%; for 1 to 10 years", "100 to 10,000; at 12%; for 1 to 10 years");
 
         root.getChildren().add(error);
         root.getChildren().add(calculate);
@@ -213,7 +213,7 @@ public class FD
         root.getChildren().add(principal);
         root.getChildren().add(time);
         root.getChildren().add(comboBox);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dropdown.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/resources/com/apple163/banking_project_gui/dropdown.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -221,10 +221,10 @@ public class FD
     private static int getAmount(String type, int pri, int tim) {
         int rate;
         switch (type) {
-            case "₹70,001 to ₹1,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
-            case "₹40,001 to ₹70,000; at 8%; for 1 to 5 years" : rate = 8; break;
-            case "₹10,001 to ₹40,000; at 10%; for 1 to 10 years" : rate = 10; break;
-            case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : rate = 12; break;
+            case "70,001 to 1,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
+            case "40,001 to 70,000; at 8%; for 1 to 5 years" : rate = 8; break;
+            case "10,001 to 40,000; at 10%; for 1 to 10 years" : rate = 10; break;
+            case "100 to 10,000; at 12%; for 1 to 10 years" : rate = 12; break;
             default : rate = 0;
         }
         return pri + (pri * rate * tim) / 100;
