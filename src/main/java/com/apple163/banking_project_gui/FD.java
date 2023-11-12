@@ -93,13 +93,13 @@ public class FD
         primaryStage.setResizable(false);
 
         principal.setLayoutX(500);
-        principal.setLayoutY(300);
+        principal.setLayoutY(400);
         principal.setPrefSize(500, 60);
         principal.setPromptText("Monthly Deposit");
         principal.setFont(Font.font("Unispace", 20));
         principal.setStyle("-fx-background-color: transparent; -fx-border-color: rgb(82, 183, 136); -fx-border-width: 2px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-text-fill: rgb(82, 183, 136);");
         time.setLayoutX(500);
-        time.setLayoutY(400);
+        time.setLayoutY(500);
         time.setPrefSize(500, 60);
         time.setPromptText("Time Period");
         time.setFont(Font.font("Unispace", 20));
@@ -198,7 +198,7 @@ public class FD
 
         comboBox.setEditable(false);
         comboBox.setLayoutX(500);
-        comboBox.setLayoutY(500);
+        comboBox.setLayoutY(300);
         comboBox.setPrefSize(500, 60);
         comboBox.setPromptText("Select the type of Fixed Deposit");
         comboBox.getItems().addAll("70,001 to 1,00,000; at 6%; for 1 to 3 years", "40,001 to 70,000; at 8%; for 1 to 5 years", "10,001 to 40,000; at 10%; for 1 to 10 years", "100 to 10,000; at 12%; for 1 to 10 years");
