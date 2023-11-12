@@ -25,8 +25,8 @@ public class Account
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image("file://src/main/resources/Logo.png");
-        Image icon = new Image("file://src/main/resources/Icon.png");
+        Image logo = new Image("Logo.png");
+        Image icon = new Image("Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("ACCOUNT");
         ImageView imageView = new ImageView(logo);
