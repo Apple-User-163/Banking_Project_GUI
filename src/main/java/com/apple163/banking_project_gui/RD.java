@@ -132,10 +132,10 @@ public class RD
             else{
                 String type = comboBox.getValue();
                 switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 24 months": upper = 24; break;
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 30 months" : upper = 30; break;
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 54 months" : upper = 54; break;
-                    case "₹100 to ₹10,000; at 12%; for 1 to 120 months" : upper = 120; break;
+                    case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 24 months": upper = 24; break;
+                    case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 30 months" : upper = 30; break;
+                    case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 54 months" : upper = 54; break;
+                    case "\u20B9100 to \u20B910,000; at 12%; for 1 to 120 months" : upper = 120; break;
                     default : upper = 0;
                 }
                 if (Integer.parseInt(time.getText()) > upper || Integer.parseInt(time.getText()) < 1) {
@@ -146,22 +146,22 @@ public class RD
                     tme_check = true;
                 }
                 switch (type) {
-                    case "₹70,001 to ₹1,00,000; at 6%; for 1 to 24 months" : {
+                    case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 24 months" : {
                         upper = 100000;
                         lower = 70001;
                         break;
                     }
-                    case "₹40,001 to ₹70,000; at 8%; for 1 to 30 months" : {
+                    case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 30 months" : {
                         upper = 70000;
                         lower = 40001;
                         break;
                     }
-                    case "₹10,001 to ₹40,000; at 10%; for 1 to 54 months" : {
+                    case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 54 months" : {
                         upper = 40000;
                         lower = 10001;
                         break;
                     }
-                    case "₹100 to ₹10,000; at 12%; for 1 to 120 months" : {
+                    case "\u20B9100 to \u20B910,000; at 12%; for 1 to 120 months" : {
                         upper = 10000;
                         lower = 100;
                         break;
@@ -183,8 +183,8 @@ public class RD
                     double amount = getAmount(type, pri, tim);
                     double interest = amount - (pri * tim);
                     root.getChildren().removeAll(principal, time, comboBox, calculate);
-                    Text amount_text = new Text("Amount: ₹" + amount);
-                    Text interest_text = new Text("Interest: ₹" + interest);
+                    Text amount_text = new Text("Amount: \u20B9" + amount);
+                    Text interest_text = new Text("Interest: \u20B9" + interest);
                     amount_text.setFont(Font.font("Unispace", 30));
                     amount_text.setFill(Color.rgb(82, 183, 136));
                     amount_text.setX(500);
@@ -203,7 +203,7 @@ public class RD
         comboBox.setLayoutY(300);
         comboBox.setPrefSize(500, 60);
         comboBox.setPromptText("Investment Options");
-        comboBox.getItems().addAll("₹70,001 to ₹1,00,000; at 6%; for 1 to 24 months", "₹40,001 to ₹70,000; at 8%; for 1 to 30 months", "₹10,001 to ₹40,000; at 10%; for 1 to 54 months", "₹100 to ₹10,000; at 12%; for 1 to 120 months");
+        comboBox.getItems().addAll("\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 24 months", "\u20B940,001 to \u20B970,000; at 8%; for 1 to 30 months", "\u20B910,001 to \u20B940,000; at 10%; for 1 to 54 months", "\u20B9100 to \u20B910,000; at 12%; for 1 to 120 months");
 
         root.getChildren().add(error);
         root.getChildren().add(calculate);
@@ -222,10 +222,10 @@ public class RD
     private static double getAmount(String type, int pri, int tim) {
         int rate;
         switch (type) {
-            case "₹70,001 to ₹1,00,000; at 6%; for 1 to 24 months": rate = 6; break;
-            case "₹40,001 to ₹70,000; at 8%; for 1 to 30 months" : rate = 8; break;
-            case "₹10,001 to ₹40,000; at 10%; for 1 to 54 months" : rate = 10; break;
-            case "₹100 to ₹10,000; at 12%; for 1 to 120 months" : rate = 12; break;
+            case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 24 months": rate = 6; break;
+            case "\u20B940,001 to \u20B970,000; at 8%; for 1 to 30 months" : rate = 8; break;
+            case "\u20B910,001 to \u20B940,000; at 10%; for 1 to 54 months" : rate = 10; break;
+            case "\u20B9100 to \u20B910,000; at 12%; for 1 to 120 months" : rate = 12; break;
             default : rate = 0;
         }
         double Interest = pri * ((tim *( tim + 1)) / 24.0) * (rate / 100.0);
