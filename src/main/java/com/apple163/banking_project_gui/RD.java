@@ -30,7 +30,7 @@ public class RD
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image(System.getProperty("user.dir") + "/resources/Logo.png");
+        Image logo = new Image("/resources/Logo.png");
         Image icon = new Image(System.getProperty("user.dir") + "/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("RECURRING DEPOSIT");
@@ -215,7 +215,7 @@ public class RD
         root.getChildren().add(principal);
         root.getChildren().add(time);
         root.getChildren().add(comboBox);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/resources/com/apple163/banking_project_gui/dropdown.css")).toExternalForm());
+        scene.getStylesheets().add(System.getProperty("user.dir")+"/resources/com/apple163/banking_project_gui/dropdown.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -229,6 +229,7 @@ public class RD
             default : rate = 0;
         }
         double Interest = pri * ((tim *( tim + 1)) / 24.0) * (rate / 100.0);
-        return (pri * tim) + Interest;
+        String round = String.format("%.2f", Interest + (pri * tim));
+        return Double.parseDouble(round);
     }
 }

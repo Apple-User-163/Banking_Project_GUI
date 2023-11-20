@@ -27,7 +27,7 @@ public class FD
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image(System.getProperty("user.dir") + "/resources/Logo.png");
+        Image logo = new Image("/resources/Logo.png");
         Image icon = new Image(System.getProperty("user.dir") + "/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("FIXED DEPOSIT");
@@ -177,12 +177,11 @@ public class FD
                     error.setText("");
                     int pri = Integer.parseInt(principal.getText());
                     int tim = Integer.parseInt(time.getText());
-                    int amount = getAmount(type, pri, tim);
-                    int interest = amount - pri;
+                    double amount = getAmount(type, pri, tim);
+                    double interest = amount - pri;
                     root.getChildren().removeAll(principal, time, comboBox, calculate);
                     Text amount_text = new Text("Amount: \u20B9" + amount);
                     Text interest_text = new Text("Interest: \u20B9" + interest);
-                    Text instruction = new Text("");
                     amount_text.setFont(Font.font("Unispace", 30));
                     amount_text.setFill(Color.rgb(82, 183, 136));
                     amount_text.setX(500);
@@ -213,12 +212,12 @@ public class FD
         root.getChildren().add(principal);
         root.getChildren().add(time);
         root.getChildren().add(comboBox);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/resources/com/apple163/banking_project_gui/dropdown.css")).toExternalForm());
+        scene.getStylesheets().add(System.getProperty("user.dir")+"/resources/com/apple163/banking_project_gui/dropdown.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private static int getAmount(String type, int pri, int tim) {
+    private static double getAmount(String type, int pri, int tim) {
         int rate;
         switch (type) {
             case "\u20B970,001 to \u20B91,00,000; at 6%; for 1 to 3 years" : rate = 6; break;
@@ -227,6 +226,7 @@ public class FD
             case "\u20B9100 to \u20B910,000; at 12%; for 1 to 10 years" : rate = 12; break;
             default : rate = 0;
         }
-        return pri + (pri * rate * tim) / 100;
+        String round = String.format("%.2f", (pri + ((double) (pri * rate * tim) / 100)));
+        return Double.parseDouble(round);
     }
 }

@@ -14,6 +14,8 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class Credit
@@ -24,12 +26,21 @@ public class Credit
         StackPane stackPane = new StackPane();
         Group root = new Group();
         Scene scene = new Scene(root);
-        Image logo = new Image(System.getProperty("user.dir") + "/resources/Logo.png");
+        Image logo = new Image("/resources/Logo.png");
         Image icon = new Image(System.getProperty("user.dir") + "/resources/Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("CREDITS");
         ImageView imageView = new ImageView(logo);
         Button back_btn = new Button("BACK");
+        Text credit1 = new Text("Team Lead - Aaron Mathew\n");
+        Text credit2 = new Text("UI Integration - Aaron Mathew\n");
+        Text credit3 = new Text("UI Design - Aaron Mathew, Nikunj Negi\n");
+        Text credit4 = new Text("Frontend - Aaron Mathew\n");
+        Text credit5 = new Text("Backend - Aaron Mathew\n");
+        Text credit6 = new Text("Paramenters - Ben Gary Leo, Nikunj Negi\n");
+        Text credit7 = new Text("Testing - Aaron Mathew, Nikunj Negi\n");
+        Text credit8 = new Text("Music - Sweden (Synthwave Remix) by Astrophysics");
+        TextFlow textFlow = new TextFlow(credit1, credit2, credit3, credit4, credit5, credit6, credit7, credit8);
 
         title.setFill(Color.rgb(82, 183, 136));
         title.setFont(Font.font("Unispace", 25));
@@ -39,6 +50,18 @@ public class Credit
         sub_title.setFont(Font.font("Unispace", 40));
         sub_title.setX(60);
         sub_title.setY(120);
+        text(credit1);
+        text(credit2);
+        text(credit3);
+        text(credit4);
+        text(credit5);
+        text(credit6);
+        text(credit7);
+        text(credit8);
+        textFlow.setLayoutX(400);
+        textFlow.setLayoutY(200);
+        textFlow.setTextAlignment(TextAlignment.CENTER);
+        textFlow.setLineSpacing(50);
 
         imageView.setX(10);
         imageView.setY(5);
@@ -85,7 +108,13 @@ public class Credit
         root.getChildren().add(stackPane);
         root.getChildren().add(title);
         root.getChildren().add(imageView);
+        root.getChildren().add(textFlow);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    void text(Text text)
+    {
+        text.setFill(Color.rgb(82, 183, 136));
+        text.setFont(Font.font("Unispace", 25));
     }
 }
