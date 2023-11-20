@@ -32,7 +32,7 @@ public class Main extends Application
             Button loan_btn = new Button("LOANS");
             Button shares_btn = new Button("SHARES");
             Button insurance_btn = new Button("INSURANCE");
-            Button calculator_btn = new Button("CALCULATORS");
+            Button currency_btn = new Button("CURRENCY\nCONVERSION");
             /* FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
             Parent fxmlRoot = loader.load(); */
             Scene scene = new Scene(root);
@@ -40,13 +40,13 @@ public class Main extends Application
             Image icon = new Image("Icon.png");
             Image fd = new Image("Fd.png");
             Image rd = new Image("Rd.png");
-            Image calculator = new Image("Cal.png");
+            Image currency = new Image("Cur.png");
             Image loan = new Image("Loan.png");
             Image insurance = new Image("Insurance.png");
             Image shares = new Image("Shares.png");
             Image fd_bl = new Image("Fd_bl.png");
             Image rd_bl = new Image("Rd_bl.png");
-            Image calculator_bl = new Image("Cal_bl.png");
+            Image currency_bl = new Image("Cur_bl.png");
             Image loan_bl = new Image("Loan_bl.png");
             Image insurance_bl = new Image("Insurance_bl.png");
             Image shares_bl = new Image("Shares_bl.png");
@@ -55,13 +55,13 @@ public class Main extends Application
             ImageView imageView = new ImageView(logo);
             ImageView fd_img = new ImageView(fd);
             ImageView rd_img = new ImageView(rd);
-            ImageView calculator_img = new ImageView(calculator);
+            ImageView currency_img = new ImageView(currency);
             ImageView loan_img = new ImageView(loan);
             ImageView insurance_img = new ImageView(insurance);
             ImageView shares_img = new ImageView(shares);
             ImageView fd_img_bl = new ImageView(fd_bl);
             ImageView rd_img_bl = new ImageView(rd_bl);
-            ImageView calculator_img_bl = new ImageView(calculator_bl);
+            ImageView currency_img_bl = new ImageView(currency_bl);
             ImageView loan_img_bl = new ImageView(loan_bl);
             ImageView insurance_img_bl = new ImageView(insurance_bl);
             ImageView shares_img_bl = new ImageView(shares_bl);
@@ -98,9 +98,9 @@ public class Main extends Application
             insurance_btn.setLayoutX(593);
             insurance_btn.setLayoutY(545);
             main_bttn(insurance_btn, insurance_img, insurance_img_bl);
-            calculator_btn.setLayoutX(1101);
-            calculator_btn.setLayoutY(545);
-            main_bttn(calculator_btn, calculator_img, calculator_img_bl);
+            currency_btn.setLayoutX(1101);
+            currency_btn.setLayoutY(545);
+            main_bttn(currency_btn, currency_img, currency_img_bl);
 
             imageView.setX(10);
             imageView.setY(5);
@@ -127,7 +127,7 @@ public class Main extends Application
 
             root.getChildren().add(fd_img);
             root.getChildren().add(insurance_btn);
-            root.getChildren().add(calculator_btn);
+            root.getChildren().add(currency_btn);
             root.getChildren().add(shares_btn);
             root.getChildren().add(loan_btn);
             root.getChildren().add(rd_btn);
@@ -148,20 +148,28 @@ public class Main extends Application
             fd_btn.setOnAction((ActionEvent event) -> new FD());
             rd_btn.setOnAction((ActionEvent event) -> new RD());
             loan_btn.setOnAction((ActionEvent event) -> new Loan());
-            calculator_btn.setOnAction((ActionEvent event) -> new Calculator());
+            currency_btn.setOnAction((ActionEvent event) -> new Currency());
             insurance_btn.setOnAction((ActionEvent event) -> new Insurance());
             shares_btn.setOnAction((ActionEvent event) -> new Shares());
-
             if (!Login.signed_in)
-                 new Login();
+            {
+                new Login();
+                primaryStage.close();
+            }
             else
             {
                 login_btn.setText("ACCOUNT");
-                login_btn.setOnAction((ActionEvent event_) -> new Account());
+                login_btn.setOnAction((ActionEvent event_) ->{
+                    new Account();
+                    primaryStage.close();
+                });
                 primaryStage.setScene(scene);
                 primaryStage.show();
             }
-
+            if (!BackgroundMusicPlayer.initialised && !Login.signed_in)
+            {
+               new BackgroundMusicPlayer();
+            }
     }
 
     public void main_bttn (Button button, ImageView view, ImageView view_bl) {

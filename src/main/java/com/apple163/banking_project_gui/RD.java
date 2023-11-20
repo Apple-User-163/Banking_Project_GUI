@@ -229,6 +229,7 @@ public class RD
             default : rate = 0;
         }
         double Interest = pri * ((tim *( tim + 1)) / 24.0) * (rate / 100.0);
-        return (pri * tim) + Interest;
+        String round = String.format("%.2f", Interest + (pri * tim));
+        return Double.parseDouble(round);
     }
 }

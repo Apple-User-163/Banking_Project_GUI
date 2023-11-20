@@ -268,7 +268,7 @@ public class Insurance
             try {
                 double cost = Double.parseDouble(this.cost.getText());
                 int time = Integer.parseInt(this.time.getText());
-                if (this.cost.getText() == null || this.cost.getText().trim().isEmpty() || this.time.getText() == null || this.time.getText().trim().isEmpty())
+                if (this.cost.getText() == null || this.cost.getText().trim().isEmpty() || this.time.getText() == null || this.time.getText().trim().isEmpty() || cost <= 0 || time <= 0)
                     error.setText("Please enter all the details");
                 else
                 {
@@ -294,7 +294,7 @@ public class Insurance
                 double cst = Double.parseDouble(cost.getText());
                 int time = Integer.parseInt(this.time.getText());
                 int ag = Integer.parseInt(age.getText());
-                if (cost.getText() == null || cost.getText().trim().isEmpty() || this.time.getText() == null || this.time.getText().trim().isEmpty() || this.age.getText() == null || this.age.getText().trim().isEmpty())
+                if (cost.getText() == null || cost.getText().trim().isEmpty() || this.time.getText() == null || this.time.getText().trim().isEmpty() || this.age.getText() == null || this.age.getText().trim().isEmpty() || cst <= 0 || time <= 0 || ag <= 0)
                     error.setText("Please enter all the details");
                 else
                 {
@@ -461,7 +461,8 @@ public class Insurance
         {
             rate = 0.1;
         }
-        return cost * rate;
+        String round = String.format("%.2f", cost * rate);
+        return Double.parseDouble(round);
     }
     private void calculate (int tme, double cst, int ag)
     {
@@ -584,6 +585,7 @@ public class Insurance
             else if (tme > 30)
                 rate = 0.2;
         }
-        return cst * rate;
+        String round = String.format("%.2f", cst * rate);
+        return Double.parseDouble(round);
     }
 }

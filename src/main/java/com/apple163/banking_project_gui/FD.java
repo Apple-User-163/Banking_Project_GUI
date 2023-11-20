@@ -226,6 +226,7 @@ public class FD
             case "₹100 to ₹10,000; at 12%; for 1 to 10 years" : rate = 12; break;
             default : rate = 0;
         }
-        return pri + ((double) (pri * rate * tim) / 100);
+        String round = String.format("%.2f", (pri + ((double) (pri * rate * tim) / 100)));
+        return Double.parseDouble(round);
     }
 }

@@ -32,3 +32,18 @@
 .combo-box .list-view .list-cell {
     -fx-text-fill: rgb(178, 178, 178);
 }
+/* Set the style for the vertical scrollbar */
+.scroll-bar:vertical {
+    -fx-background-color: transparent; /* Background color of the scrollbar track */
+    -fx-background-radius: 5px; /* Radius of the scrollbar track corners */
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(64, 145, 108); /* Color of the thumb (the draggable part) */
+    -fx-background-radius: 5px; /* Radius of the thumb corners */
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent; /* Color of the non-draggable track */
+    -fx-background-radius: 5px; /* Radius of the track corners */
+}

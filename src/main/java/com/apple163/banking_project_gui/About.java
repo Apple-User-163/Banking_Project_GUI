@@ -14,6 +14,8 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class About
@@ -28,8 +30,17 @@ public class About
         Image icon = new Image("Icon.png");
         Text title = new Text("THE BANKING PROJECT");
         Text sub_title = new Text("ABOUT");
+        Text body1 = new Text();
+        Text body2 = new Text();
+        Text body3 = new Text();
+        Text body4 = new Text();
         ImageView imageView = new ImageView(logo);
         Button back_btn = new Button("BACK");
+        TextFlow textFlow = new TextFlow();
+        TextFlow textFlow1 = new TextFlow();
+        TextFlow textFlow2 = new TextFlow();
+        TextFlow textFlow3 = new TextFlow();
+        TextFlow textFlow4 = new TextFlow();
 
         title.setFill(Color.rgb(82, 183, 136));
         title.setFont(Font.font("Unispace", 25));
@@ -39,6 +50,41 @@ public class About
         sub_title.setFont(Font.font("Unispace", 40));
         sub_title.setX(60);
         sub_title.setY(120);
+        body1.setFill(Color.rgb(82, 183, 136));
+        body1.setFont(Font.font("Unispace", 25));
+        body1.setText("This Computer Applications Project for the year 2023-2024\nwas created by a team of students, Nikunj Negi and Ben Gary Leo, led by Aaron Vinu Mathew\n");
+        body2.setFill(Color.rgb(82, 183, 136));
+        body2.setFont(Font.font("Unispace", 25));
+        body2.setText("The complete credits for the project can be found under the 'credits' button\n");
+        body3.setFill(Color.rgb(82, 183, 136));
+        body3.setFont(Font.font("Unispace", 25));
+        body3.setText("The project was created using JavaFX and Java 16.0.1\nbut is backward compatible upto Java 8\n");
+        body4.setFill(Color.rgb(82, 183, 136));
+        body4.setFont(Font.font("Unispace", 25));
+        body4.setText("The source code is also available on GitHub at:\nhttps://github.com/Apple-User-163/Banking_Project_GUI");
+        textFlow1.getChildren().addAll(body1);
+        textFlow1.setTextAlignment(TextAlignment.CENTER);
+        textFlow1.setLineSpacing(10);
+        textFlow2.getChildren().addAll(body2);
+        textFlow2.setTextAlignment(TextAlignment.CENTER);
+        textFlow2.setLineSpacing(10);
+        textFlow3.getChildren().addAll(body3);
+        textFlow3.setTextAlignment(TextAlignment.CENTER);
+        textFlow3.setLineSpacing(10);
+        textFlow4.getChildren().addAll(body4);
+        textFlow4.setTextAlignment(TextAlignment.CENTER);
+        textFlow4.setLineSpacing(10);
+        textFlow.getChildren().add(textFlow1);
+        textFlow.getChildren().add(new Text("\n"));
+        textFlow.getChildren().add(textFlow2);
+        textFlow.getChildren().add(new Text("\n"));
+        textFlow.getChildren().add(textFlow3);
+        textFlow.getChildren().add(new Text("\n"));
+        textFlow.getChildren().add(textFlow4);
+        textFlow.setLayoutX(100);
+        textFlow.setLayoutY(200);
+        textFlow.setTextAlignment(TextAlignment.CENTER);
+        textFlow.setLineSpacing(50);
 
         imageView.setX(10);
         imageView.setY(5);
@@ -85,6 +131,7 @@ public class About
         root.getChildren().add(stackPane);
         root.getChildren().add(title);
         root.getChildren().add(imageView);
+        root.getChildren().add(textFlow);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

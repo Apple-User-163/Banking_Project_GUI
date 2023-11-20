@@ -35,7 +35,7 @@ public class Login
 {
     public String user_name;
     public String pass_word;
-    public int user_id;
+    static int user_id;
     String occupation;
     Boolean userFound = false;
 
@@ -60,8 +60,10 @@ public class Login
         JSONParser parser = new JSONParser();
         Platform.runLater(Stage::new);
         JSONArray users;
+        JSONArray initialise;
         try {
             users = (JSONArray) parser.parse(new FileReader("credentials.json"));
+            initialise = (JSONArray) parser.parse(new FileReader("user_data.json"));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -147,7 +149,6 @@ public class Login
                 if (storedUsername.equals(user_name) && storedPassword.equals(pass_word)) {
                     userFound = true;
                     user_id = users.indexOf(user);
-                    System.out.println(user_id);
                     break;
                 }
             }
@@ -201,9 +202,22 @@ public class Login
                 newUser.put("password", pass_word);
                 newUser.put("occupation", occupation);
                 users.add(newUser);
-                // Update the JSON file with the new user data
                 try (FileWriter fileWriter = new FileWriter("credentials.json")) {
                     fileWriter.write(users.toJSONString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                newUser.clear();
+                newUser.put("MSFT", 0);
+                newUser.put("AAPL", 0);
+                newUser.put("GOOGL", 0);
+                newUser.put("INTC", 0);
+                newUser.put("AMD", 0);
+                newUser.put("NVDA", 0);
+                newUser.put("Balance", 0.0);
+                initialise.add(newUser);
+                try (FileWriter fileWriter = new FileWriter("user_data.json")) {
+                    fileWriter.write(initialise.toJSONString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -211,7 +225,6 @@ public class Login
                 message.setFill(Color.LIMEGREEN);
                 message.setText("Registration successful");
                 user_id = users.indexOf(newUser);
-                System.out.println(user_id);
             }   close(stage);
             if (userFound) {
                 message.setFill(Color.RED);
