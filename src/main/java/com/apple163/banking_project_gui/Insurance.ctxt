@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Insurance
+comment1.params=
+comment1.target=Insurance()
+comment10.params=cost
+comment10.target=double\ getPremium(double)
+comment11.params=tme\ cst\ ag
+comment11.target=void\ calculate(int,\ double,\ int)
+comment12.params=tme\ cst\ ag
+comment12.target=double\ getPremium(int,\ double,\ int)
+comment2.params=bttn
+comment2.target=void\ cal_btn(javafx.scene.control.Button)
+comment3.params=
+comment3.target=void\ MotorInsurance()
+comment4.params=
+comment4.target=void\ HealthInsurance()
+comment5.params=
+comment5.target=void\ LifeInsurance()
+comment6.params=
+comment6.target=void\ PropertyInsurance()
+comment7.params=
+comment7.target=void\ TravelInsurance()
+comment8.params=
+comment8.target=void\ MarineInsurance()
+comment9.params=cost\ tme
+comment9.target=void\ calculate(double,\ int)
+numComments=13

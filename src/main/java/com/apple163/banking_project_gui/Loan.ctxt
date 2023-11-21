@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Loan
+comment1.params=
+comment1.target=Loan()
+comment2.params=button
+comment2.target=void\ bttn(javafx.scene.control.Button)
+comment3.params=sum\ time\ sub_title
+comment3.target=void\ loan(double,\ int,\ java.lang.String)
+comment4.params=rate\ occupation\ sum\ sub_title
+comment4.target=double\ cal(double,\ java.lang.String,\ double,\ java.lang.String)
+numComments=5

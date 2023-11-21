@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Shares
+comment1.params=
+comment1.target=Shares()
+comment2.params=text\ max\ min\ name
+comment2.target=double\ val(javafx.scene.text.Text,\ double,\ double,\ java.lang.String)
+numComments=3

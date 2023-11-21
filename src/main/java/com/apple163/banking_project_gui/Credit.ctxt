@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Credit
+comment1.params=
+comment1.target=Credit()
+comment2.params=text
+comment2.target=void\ text(javafx.scene.text.Text)
+numComments=3
