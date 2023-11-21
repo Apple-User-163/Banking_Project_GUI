@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Currency
+comment1.params=
+comment1.target=Currency()
+comment2.params=amt\ cur
+comment2.target=java.math.BigDecimal\ calculate(java.math.BigDecimal,\ java.lang.String)
+comment3.params=max\ min
+comment3.target=double\ variable(double,\ double)
+numComments=4
