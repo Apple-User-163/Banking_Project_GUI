@@ -15,7 +15,7 @@ public class BackgroundMusicPlayer {
         this.media = new Media(new File(MUSIC_FILE_PATH).toURI().toString());
         this.mediaPlayer = new MediaPlayer(media);
         this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Loop the music indefinitely
-        this.mediaPlayer.setVolume(0.25); // Set the volume to 50%
+        this.mediaPlayer.setVolume(0.25); // Set the volume to 25%
         this.mediaPlayer.play();
         initialised = true;
     }
